@@ -14,7 +14,7 @@ public class Taco {
 	@NotNull
 	@Size(min=2, message="Name must be at least 2 charactors")
 	private String name;
-	@NotEmpty
+	@NotEmpty(message="at least 1 ingredient")
 	//@Size(min=1, message="You must choose at least 1 ingredient")
 	private List<Ingredient> ingredients;
 	
