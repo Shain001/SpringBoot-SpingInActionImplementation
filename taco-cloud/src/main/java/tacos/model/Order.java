@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.*;
 import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Null;
@@ -14,6 +15,8 @@ import org.hibernate.validator.constraints.CreditCardNumber;
 import lombok.Data;
 
 @Data
+@Entity
+@Table(name = "Taco_Order")
 public class Order {
 	@NotBlank(message="Name is required")
 	private String deliveryName;
@@ -32,8 +35,11 @@ public class Order {
 	private String ccExpiration;
 	@Digits(integer=3, fraction=0, message="invalid cvv")
 	private String ccCVV;
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 	private Date placeAt;
+	@ManyToMany(targetEntity = Taco.class)
 	private List<Taco> tacos;
 
 	public void addDesign(Taco taco){
@@ -42,5 +48,10 @@ public class Order {
 		}
 
 		this.tacos.add(taco);
+	}
+
+	@PrePersist
+	void placeAt(){
+		this.placeAt = new Date();
 	}
 }
