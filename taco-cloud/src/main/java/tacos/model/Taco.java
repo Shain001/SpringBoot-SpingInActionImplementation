@@ -23,13 +23,13 @@ public class Taco {
 	private List<Ingredient> ingredients;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 	
-	private Date createAt;
+	private Date createdAt;
 
 	@PrePersist
 	void createAt(){
-		this.createAt = new Date();
+		this.createdAt = new Date();
 	}
 }

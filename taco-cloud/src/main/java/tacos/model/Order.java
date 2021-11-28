@@ -36,9 +36,9 @@ public class Order {
 	@Digits(integer=3, fraction=0, message="invalid cvv")
 	private String ccCVV;
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
-	private Date placeAt;
+	private Date placedAt;
 	@ManyToMany(targetEntity = Taco.class)
 	private List<Taco> tacos;
 
@@ -52,6 +52,6 @@ public class Order {
 
 	@PrePersist
 	void placeAt(){
-		this.placeAt = new Date();
+		this.placedAt = new Date();
 	}
 }

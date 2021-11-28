@@ -157,7 +157,7 @@ public class DesignTacoController {
 		
 		List<Ingredient> ingredients = new ArrayList<>();
 		
-		ingredientRepo.findAll().forEach(i -> ingredients.add(i));
+		ingredientRepo.findAll().forEach(ingredients::add);
 		
 		Type[] types = Ingredient.Type.values();
 		
